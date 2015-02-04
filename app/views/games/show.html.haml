@@ -1,0 +1,71 @@
+= cloudinary_js_config
+
+.row
+  .small-12.columns
+    .small-3.columns
+      = image_tag @game.boxart
+
+    .small-9.columns
+      %h3= @game.title
+      %h5= @game.platform
+      = "#{@game.votes.count} players signed up"
+
+      - if current_user && current_user.admin
+        .row
+          .small-6.columns
+            - current_time_slot = @game.time_slot ? @game.time_slot.id : nil
+            = select_tag "time_slot", options_for_select(@available_times.collect { |time_slot| [ time_slot.scheduled_time.to_s(:rfc822), time_slot.id] }, current_time_slot) # Dropdown list to select from any available time slots that haven't been filled already
+          .small-6.columns
+            %button.button.radius{ id: "set-time-slot", data: { game: @game.id } } Set Timeslot
+      
+      %br
+      = link_to("TAG Discussion Thread", @game.tag_thread) if @game.tag_thread != ''
+    
+- 2.times do
+  %br
+
+.row
+  - if current_user && @current_user_vote && @game.time_slot && (@game.time_slot.scheduled_time < Time.now)
+    %h4 
+      Your secret code for score submissions:
+      = @current_user_vote.proof_string
+    
+    (Include this phrase in any score submission images, if this game requires score submissions.)
+    
+    %hr
+    
+    -if @current_user_vote && @current_user_vote.image_id
+      %h3 Your score has been submitted
+      =cl_image_tag(@current_user_vote.image_id)
+      
+      %hr
+    
+    %h3 Score Submission
+    Use this form to upload and submit a digital image or screenshot of your high score for the event. Please check the discussion thread on TAG for the time that the event ends and be sure to get your score in before then!
+    
+    .preview
+    
+    = form_tag(vote_post_score_path(@current_user_vote), :method => :post) do
+      = cl_image_upload_tag(:image_id)
+      = submit_tag "Submit Score"
+    
+  %hr 
+- 2.times do
+  %br
+  
+  - if current_user && current_user.admin
+    - @scores.each do |key, value|
+      %h5= key
+      = cl_image_tag value
+
+    %hr
+    - 2.times do
+      %br
+
+.row
+  - @players.each do |team_name, players|
+    .small-3.columns
+      %h3= team_name
+      %ul
+        - players.each do |player|
+          %li= link_to player.username, player

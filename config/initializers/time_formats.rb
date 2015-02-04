@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:event_time] = '%A, %B %e, %l:%M %p EDT'

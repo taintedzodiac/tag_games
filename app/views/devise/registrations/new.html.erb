@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="small-6 columns">
+    <h2>Sign up</h2>
+    <h6>Please sign up using the exact username that you use on TAG. Failure to follow this rule will result in public mockery, followed by death.</h6>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="small-3 columns">
+        <%= f.label :email, for: 'right-label', class: 'inline' %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.email_field :email, :autofocus => true %>
+      </div>
+      
+      <div class="small-3 columns">
+        <%= f.label :username, 'TAG Username' %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :username %>
+      </div>
+
+      <div class="small-3 columns">
+        <%= f.label :password, for: 'right-label', class: 'inline'  %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="small-3 columns">
+        <%= f.label :password_confirmation, for: 'right-label', class: 'inline'  %><br />
+      </div>
+      <div class="small-9 columns">
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div>
+        <%= f.submit "Sign up", class: 'button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

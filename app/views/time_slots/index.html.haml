@@ -1,0 +1,12 @@
+.row
+  .small-12.columns
+    %h3 Upcoming Events
+    %ul
+      - @time_slots.each do |event|
+        %li
+          %strong= event.scheduled_time.to_s(:event_time)
+          - if event.game 
+            = link_to event.game.title, event.game
+            = "(#{event.game.platform})"
+          - else
+            TBD

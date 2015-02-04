@@ -1,0 +1,45 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "foundation-rails"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+  %body
+  
+    = javascript_include_tag "application"
+    = javascript_include_tag "http://code.jquery.com/ui/1.9.0/jquery-ui.js"
+    = stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"
+    
+    .off-canvas-wrap
+      .inner-wrap
+        %nav.tab-bar
+          %section.left-small
+            %a.left-off-canvas-toggle.menu-icon
+              %span
+          %section.middle.tab-bar-section
+            %h1.title= link_to 'TAG Games 2014', root_path
+        %aside.left-off-canvas-menu
+          %ul.off-canvas-list
+            %li
+              %label= link_to(current_user.username, current_user) if user_signed_in?
+            %li
+              - if user_signed_in?
+                = link_to 'Event Sign Ups', root_path
+                = link_to 'Games', games_path
+                = link_to 'Schedule', time_slots_path
+                = link_to 'Players / Teams', users_path
+              - else
+                = link_to 'Log In', new_user_session_path, method: 'GET'
+                = link_to 'Sign Up', new_user_registration_path, method: 'GET'
+              - if user_signed_in?
+                = link_to 'Log Out', destroy_user_session_path, method: 'DELETE'
+        %section.main-section
+          .row
+            - if current_user && current_user.drafting
+              .alert-box.success.round It's your turn to draft! Just click the "Draft This Player" button from any player's page to add that player to your team!
+            = yield
+          
+        %a.exit-off-canvas 

@@ -1,0 +1,13 @@
+= link_to image_tag(game.boxart), game
+%br
+%center
+  %div{ id: "voting-#{game.id}" }
+    %span
+      - if user_vote = game.votes.where(user_id: current_user.id).first
+        %button.button.radius.alert.voter.vote-down{ id: "vote-down-#{user_vote.id}", data: { game: game.id, vote: user_vote.id } } Unvote
+      - else
+        %button.button.radius.voter.vote-up{ id: "vote-up-#{game.id}", data: { game: game.id } } I'll Play It
+    %br
+    %span.votes{id: "vote-count-#{game.id}", style: 'margin-left: 10px;'}= game.votes.count
+    Votes
+  %h3= game.title

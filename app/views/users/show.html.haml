@@ -1,0 +1,25 @@
+.row
+  .small-4.columns
+    %h3= @user.username
+    %h4= @user.team.name
+    
+    - if @undrafted && current_user && !(current_user.captain_team.nil?) && (current_user.draft_order > -1) && current_user.drafting && @user.draftable
+      - 3.times do
+        %br
+      %button.button.radius#draft-player{ data: { user: @user.id, team: current_user.team.id } } Draft This Player
+    - elsif !@user.draftable
+      Not Draftable Yet!
+    
+  .small-4.columns
+    %h3 Sign Up Counts
+    %ul
+      - @signup_counts.each do |signups|
+        %li= "#{signups[:platform]}: #{signups[:signup_count]}"
+
+  .small-4.columns
+    %h3 Signed Up
+    - @votes.each do |vote|
+      %li
+        = link_to "#{vote.game.title}", vote.game
+        = "(#{vote.game.platform})"
+    
