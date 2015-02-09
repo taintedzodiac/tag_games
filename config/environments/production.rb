@@ -77,4 +77,7 @@ TagGames::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Host for production
+  config.action_mailer.default_url_options = { :host => "taggames2014.herokuapp.com" }
 end
