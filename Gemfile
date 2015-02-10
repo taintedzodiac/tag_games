@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 gem 'rails', '4.0.13'
-gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
+gem 'mongoid'
 
 # Used to generate brackets for individual events
 gem 'bracket_tree'
@@ -60,14 +60,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'mongoid-rspec', '~> 2.1.0'
+end
