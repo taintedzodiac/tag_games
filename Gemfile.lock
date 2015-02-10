@@ -59,6 +59,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    excon (0.44.1)
     execjs (2.0.2)
     figaro (1.1.0)
       thor (~> 0.14)
@@ -87,6 +88,9 @@ GEM
     json (1.8.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (2.4.3)
     minitest (4.7.5)
     moped (2.0.0.beta5)
@@ -163,6 +167,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  mandrill-api
   mongoid!
   rails (= 4.0.13)
   rails3-jquery-autocomplete

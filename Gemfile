@@ -19,6 +19,9 @@ gem 'jquery-rails'
 # User for uploading images
 gem 'cloudinary'
 
+# Email management via Mandrill
+gem 'mandrill-api'
+
 # Autocomplete for searching
 gem 'rails3-jquery-autocomplete'
 
