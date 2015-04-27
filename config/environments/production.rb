@@ -79,7 +79,7 @@ TagGames::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Host for production
-  config.action_mailer.default_url_options = { :host => "taggames2014.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "taggames2015.herokuapp.com" }
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
