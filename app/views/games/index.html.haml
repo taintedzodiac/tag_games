@@ -14,29 +14,29 @@
           %th
             %center Total Signups
           %th
-            %center LoH
+            %center Harmony
           %th
-            %center Ubo
+            %center Goo
           %th
-            %center Nink
-      
+            %center Hustler
+
       %tbody
-        - loh_team = User.where(username:"lackofharmony").first.team
-        - ubo_team = User.where(username:"lilubo").first.team
-        - nink_team = User.where(username:"captnink").first.team
+        - team_one = User.where(username:"lackofharmony").first.team
+        - team_two = User.where(username:"primordial g00").first.team
+        - team_three = User.where(username:"no1hustler").first.team
         - @games.each do |game|
-          - loh_count = 0
-          - ubo_count = 0
-          - nink_count = 0
-          
+          - one_count = 0
+          - two_count = 0
+          - three_count = 0
+
           - game.votes.each do |vote|
             - case vote.user.team
-            - when loh_team
-              - loh_count += 1
-            - when ubo_team
-              - ubo_count += 1
-            - when nink_team
-              - nink_count += 1
+            - when team_one
+              - one_count += 1
+            - when team_two
+              - two_count += 1
+            - when team_three
+              - three_count += 1
           %tr
             %td= link_to game.title, game
             %td
@@ -50,6 +50,6 @@
                 - else
                   Not Scheduled
             %td{ style: 'text-align: right;' }= game.votes.count
-            %td{ style: 'text-align: right;' }= loh_count
-            %td{ style: 'text-align: right;' }= ubo_count
-            %td{ style: 'text-align: right;' }= nink_count
+            %td{ style: 'text-align: right;' }= one_count
+            %td{ style: 'text-align: right;' }= two_count
+            %td{ style: 'text-align: right;' }= three_count
