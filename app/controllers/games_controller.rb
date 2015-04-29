@@ -21,7 +21,7 @@ class GamesController < ApplicationController
     end
 
     @game.votes.each do |vote|
-      @players[vote.user.team.name] << vote.user if @players[vote.user.team]
+      @players[vote.user.team.name] << vote.user
       @scores[vote.user.username] = vote.image_id
     end
   end
