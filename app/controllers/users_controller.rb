@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       @user.advance_draft_order if params[:user][:team_id]
       render(json: {type: 'user', action: 'draft_to_team', user: @user, success: true, params: params})
     else
-      render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params})
+      render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params, message: "Unable to update the user."})
     end
   end
 
