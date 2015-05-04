@@ -35,11 +35,17 @@ class UsersController < ApplicationController
       return
     end
 
-    if @user.update_attributes(params[:user]) && @user.save
+    if @user.update_attributes!(params[:user])
       @user.advance_draft_order if params[:user][:team_id]
       render(json: {type: 'user', action: 'draft_to_team', user: @user, success: true, params: params})
     else
       render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params})
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:team_id)
   end
 end
