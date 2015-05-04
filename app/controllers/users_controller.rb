@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     # Block the action to change the user's team unless it's an admin or the new team's captain (drafting the player)
     if params[:user][:team_id] && !(current_user.captain_team == Team.find(params[:user][:team_id]))
-      render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params})
+      render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params, message: "Unauthorized to draft at this time."})
       return
     end
 
