@@ -9,6 +9,12 @@ class UsersController < ApplicationController
       this_team = {team: team, users: @users.where(team: team)}
       @users_by_team << this_team
     end
+
+    respond_to do |format|
+      format.html
+    end
+
+    end
   end
 
   def show

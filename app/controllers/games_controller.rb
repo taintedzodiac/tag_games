@@ -29,10 +29,16 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
 
-    if @game.update_attributes(params[:game]) && @game.save
+    if @game.update_attributes(game_params) && @game.save
       render(json: {type: 'game', action: 'set_time_slot', game: @game, success: true, params: params})
     else
       render(json: {type: 'game', action: 'set_time_slot', game: @game, success: false, params: params})
     end
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:time_slot_id)
   end
 end
