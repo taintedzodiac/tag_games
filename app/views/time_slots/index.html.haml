@@ -2,7 +2,7 @@
   .small-12.columns
     %h3 Ongoing Events
     %ul
-      - @ongoing_events.each do |event|
+      - @ongoing_events.each do |game|
         %li
           %strong= link_to game.title, game
           = "(#{game.platform})"
