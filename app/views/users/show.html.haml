@@ -5,7 +5,7 @@
 
     - if current_user.admin
       = form_for @user, url: {action: "update"} do |f|
-        = f.select :team_id, options_for_select @teams, @user.team_id
+        = f.select :team_id, @teams
         = f.submit "Assign to Team"
 
     - if @undrafted && current_user && !(current_user.captain_team.nil?) && (current_user.draft_order > -1) && current_user.drafting && @user.draftable
