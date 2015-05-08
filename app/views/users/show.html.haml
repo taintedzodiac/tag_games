@@ -3,6 +3,11 @@
     %h3= @user.username
     %h4= @user.team.name
 
+    - if current_user.admin
+      = form_for @user, url: {action: "update"}
+        = f.options_for_select @teams, @user.team_id
+        = f.submit "Assign to Team"
+
     - if @undrafted && current_user && !(current_user.captain_team.nil?) && (current_user.draft_order > -1) && current_user.drafting && @user.draftable
       - 3.times do
         %br

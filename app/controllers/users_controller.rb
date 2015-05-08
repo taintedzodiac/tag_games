@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]).with(:votes)
     @votes = @user.votes.sort_by { |vote| vote.game.title }
     @undrafted = (@user.team == Team.where(name:"Undrafted").first ? true : false)
+    @teams = Team.all.map { |team| [team.name, team.id] }
 
     @signup_counts = []
     Game.all.pluck(:platform).uniq.sort.each do |platform|
