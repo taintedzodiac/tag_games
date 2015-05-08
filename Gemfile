@@ -4,6 +4,9 @@ ruby '2.2.0'
 gem 'rails', '4.0.13'
 gem 'mongoid'
 
+# Error monitoring
+gem 'errorapp_notifier'
+
 # Used to generate brackets for individual events
 gem 'bracket_tree'
 

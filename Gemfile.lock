@@ -49,6 +49,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    errorapp_notifier (0.1.1)
+      rack
     erubis (2.7.0)
     excon (0.44.1)
     execjs (2.0.2)
@@ -183,6 +185,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.0.0)
   devise
+  errorapp_notifier
   figaro
   forgery
   foundation-icons-sass-rails
