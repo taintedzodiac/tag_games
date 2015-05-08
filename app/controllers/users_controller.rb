@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     # Block the action to change the user's team unless it's an admin or the new team's captain (drafting the player)
-    if params[:user][:team_id] && !current_user.admin && !(current_user.captain_team == Team.find(params[:user][:team_id])
+    if params[:user][:team_id] && !current_user.admin && !(current_user.captain_team == Team.find(params[:user][:team_id]))
       render(json: {type: 'user', action: 'draft_to_team', user: @user, success: false, params: params,
                     message: "#{current_user.captain_team.name} is not #{Team.find(params[:user][:team_id]).name}"})
       return
