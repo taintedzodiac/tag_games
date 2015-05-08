@@ -4,7 +4,7 @@
     %h4= @user.team.name
 
     - if current_user.admin
-      = form_for @user, url: {action: "update"} do |f|
+      = form_for @user, url: {action: "update"}, remote: true do |f|
         = f.select :team_id, @teams
         = f.submit "Assign to Team"
 
